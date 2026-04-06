@@ -1,0 +1,14 @@
+name: QA_Artifact_Workflow
+on:
+  workflow_dispatch:
+jobs:
+  qa-artifact-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create artifact file
+        run: echo "QA artifact content - ${{ github.run_number }}" > qa_artifact.txt
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-artifact-${{ github.run_number }}
+          path: qa_artifact.txt
